@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'tabs/linear_regression.dart';
+import 'tabs/formulaire.dart';
 
 void main() {
   runApp(const MyApp());
@@ -96,16 +97,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           body: const TabBarView(children: [
             linear_regression(),
-            Center(
-                child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Password',
-              ),
-            )),
+            formulaire(),
           ]),
         ),
       ),
     );
   }
 }
+
