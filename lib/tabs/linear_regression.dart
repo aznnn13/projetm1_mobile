@@ -29,14 +29,14 @@ class linear_regression extends StatelessWidget {
                     side: const BorderSide(
                         color: Color.fromRGBO(0, 160, 227, 1))),
                 onPressed: () {},
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(15.0),
                 color: Colors.white,
                 textColor: const Color.fromRGBO(0, 160, 227, 1),
                 child: const Text("Ajouter un point",
                     style: TextStyle(fontSize: 15)),
               ),
             ),
-            const SizedBox(width: 40),
+            const SizedBox(width: 10),
             SizedBox(
               height: 50.0,
               child: RaisedButton(
@@ -45,7 +45,7 @@ class linear_regression extends StatelessWidget {
                     side: const BorderSide(
                         color: Color.fromRGBO(220, 20, 60, 1))),
                 onPressed: () {},
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(15.0),
                 color: Colors.white,
                 textColor: const Color.fromRGBO(220, 20, 60, 1),
                 child: const Text("Supprimer le dernier point",
@@ -69,7 +69,7 @@ class Point extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: const [
-        Text("Valeur 1 : "),
+        Text("Point 1 : "),
         SizedBox(
           width: 150,
           child: TextField(
