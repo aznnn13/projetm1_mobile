@@ -95,9 +95,77 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          body: const TabBarView(children: [
-            linear_regression(),
-            formulaire(),
+          body: TabBarView(children: [
+            Center(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Text("Point 1 : "),
+                        SizedBox(
+                          width: 150,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'X',
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Y',
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 100),
+                        SizedBox(
+                          height: 50.0,
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: const BorderSide(
+                                    color: Color.fromRGBO(0, 160, 227, 1))),
+                            onPressed: () {},
+                            padding: const EdgeInsets.all(15.0),
+                            color: Colors.white,
+                            textColor: const Color.fromRGBO(0, 160, 227, 1),
+                            child: const Text("Ajouter un point",
+                                style: TextStyle(fontSize: 15)),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        SizedBox(
+                          height: 50.0,
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: const BorderSide(
+                                    color: Color.fromRGBO(220, 20, 60, 1))),
+                            onPressed: () {},
+                            padding: const EdgeInsets.all(15.0),
+                            color: Colors.white,
+                            textColor: const Color.fromRGBO(220, 20, 60, 1),
+                            child: const Text("Supprimer le dernier point",
+                                style: TextStyle(fontSize: 15)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
+            Text("Formulaire"),
           ]),
         ),
       ),
