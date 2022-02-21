@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
@@ -55,6 +56,8 @@ class regressionLineaire extends StatefulWidget {
 }
 
 class _MyState extends State<regressionLineaire> {
+  final int decimalRange = 5;
+
   void changeColor() {
     setState(() {
       //TODO: Ajouter Textfields
@@ -66,80 +69,91 @@ class _MyState extends State<regressionLineaire> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: ListView(
-              shrinkWrap: false,
-              children: <Widget>[
-                Column(
-                  children: [
-                    const SizedBox(
-                      height: 30,
+          child: ListView(shrinkWrap: false, children: <Widget>[
+        Column(
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("Point 1 : ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                    )),
+                SizedBox(
+                  width: 115,
+                  child: TextField(
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^\d+\.?\d{0,5}')),
+                    ],
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'X',
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        Text("Point 1 : ", style:TextStyle(
-                          fontWeight: FontWeight.w500,
-                        )),
-                        SizedBox(
-                          width: 115,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'X',
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 115,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Y',
-                            ),
-                          ),
-                        )
-                      ],
+                  ),
+                ),
+                SizedBox(
+                  width: 115,
+                  child: TextField(
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^\d+\.?\d{0,5}')),
+                    ],
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Y',
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 100),
-                        SizedBox(
-                          height: 50.0,
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: const BorderSide(
-                                    color: Color.fromRGBO(0, 160, 227, 1))),
-                            onPressed: () {},
-                            padding: const EdgeInsets.all(15.0),
-                            color: Colors.white,
-                            textColor: const Color.fromRGBO(0, 160, 227, 1),
-                            child: const Text("Ajouter un point",
-                                style: TextStyle(fontSize: 15)),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          height: 50.0,
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: const BorderSide(
-                                    color: Color.fromRGBO(220, 20, 60, 1))),
-                            onPressed: () {},
-                            padding: const EdgeInsets.all(15.0),
-                            color: Colors.white,
-                            textColor: const Color.fromRGBO(220, 20, 60, 1),
-                            child: const Text("Supprimer le dernier point",
-                                style: TextStyle(fontSize: 15)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 )
-              ])),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 100),
+                SizedBox(
+                  height: 50.0,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        side: const BorderSide(
+                            color: Color.fromRGBO(0, 160, 227, 1))),
+                    onPressed: () {},
+                    padding: const EdgeInsets.all(15.0),
+                    color: Colors.white,
+                    textColor: const Color.fromRGBO(0, 160, 227, 1),
+                    child: const Text("Ajouter un point",
+                        style: TextStyle(fontSize: 15)),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                SizedBox(
+                  height: 50.0,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        side: const BorderSide(
+                            color: Color.fromRGBO(220, 20, 60, 1))),
+                    onPressed: () {},
+                    padding: const EdgeInsets.all(15.0),
+                    color: Colors.white,
+                    textColor: const Color.fromRGBO(220, 20, 60, 1),
+                    child: const Text("Supprimer le dernier point",
+                        style: TextStyle(fontSize: 15)),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        )
+      ])),
     );
   }
 }
