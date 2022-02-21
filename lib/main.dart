@@ -61,7 +61,6 @@ class _MyState extends State<regressionLineaire> {
   void changeColor() {
     setState(() {
       //TODO: Ajouter Textfields
-      //TODO: Ajouter infiniteScroll
     });
   }
 
