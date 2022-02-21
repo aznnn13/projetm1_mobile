@@ -39,14 +39,13 @@ class HomePage extends StatelessWidget {
           ),
         ),
         body: TabBarView(children: [
-          Text("Test"),
+          regressionLineaire(),
           Text("Test"),
         ]),
       ),
     );
   }
 }
-
 
 
 //////////////////////////// REGRESSION LINEAIRE ////////////////////////////
@@ -59,7 +58,6 @@ class regressionLineaire extends StatefulWidget {
 }
 
 class _MyState extends State<regressionLineaire> {
-  Color _containerColor = Colors.yellow;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +70,9 @@ class _MyState extends State<regressionLineaire> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
-                Text("Point 1 : "),
+                Text("Point 1 : ", style:TextStyle(
+                  fontWeight: FontWeight.w500,
+                )),
                 SizedBox(
                   width: 150,
                   child: TextField(
