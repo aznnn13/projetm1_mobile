@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -63,50 +61,12 @@ class _MyState extends State<regressionLineaire> {
   //////////////////////////////////////////////////////////////////////////////
   int nbPoints = 2;
   var listOfFields = <Widget>[
-    Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    Column(
       children: [
-        Text("Point 1 :",
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-            )),
-        SizedBox(
-          width: 115,
-          child: TextField(
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
-            ],
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'X',
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 115,
-          child: TextField(
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
-            ],
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Y',
-            ),
-          ),
-        )
-      ],
-    )
-  ];
-
-  void addNewPoint() {
-    setState(() {
-      listOfFields.add(
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Point " + nbPoints.toString() + " :",
+            Text("Point 1 :",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
@@ -138,7 +98,59 @@ class _MyState extends State<regressionLineaire> {
             )
           ],
         ),
-      );
+        SizedBox(
+          height: 10,
+        )
+      ],
+    )
+  ];
+
+  void addNewPoint() {
+    setState(() {
+      listOfFields.add(Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("Point " + nbPoints.toString() + " :",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                  )),
+              SizedBox(
+                width: 115,
+                child: TextField(
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^\d+\.?\d{0,5}')),
+                  ],
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'X',
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 115,
+                child: TextField(
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^\d+\.?\d{0,5}')),
+                  ],
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Y',
+                  ),
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          )
+        ],
+      ));
       nbPoints++;
     });
   }
@@ -151,7 +163,6 @@ class _MyState extends State<regressionLineaire> {
   }
 
   //////////////////////////////////////////////////////////////////////////////
-
 
   @override
   Widget build(BuildContext context) {
@@ -189,7 +200,8 @@ class _MyState extends State<regressionLineaire> {
                           padding: const EdgeInsets.all(15.0),
                           color: Colors.white,
                           textColor: const Color.fromRGBO(0, 160, 227, 1),
-                          child: const Text("+", style: TextStyle(fontSize: 15)),
+                          child:
+                              const Text("+", style: TextStyle(fontSize: 15)),
                         ),
                       ),
                       const SizedBox(width: 20),
@@ -204,8 +216,8 @@ class _MyState extends State<regressionLineaire> {
                           padding: const EdgeInsets.all(15.0),
                           color: Colors.white,
                           textColor: const Color.fromRGBO(0, 160, 227, 1),
-                          child:
-                          const Text("Envoyer", style: TextStyle(fontSize: 15)),
+                          child: const Text("Envoyer",
+                              style: TextStyle(fontSize: 15)),
                         ),
                       ),
                       const SizedBox(width: 20),
@@ -222,12 +234,12 @@ class _MyState extends State<regressionLineaire> {
                           padding: const EdgeInsets.all(15.0),
                           color: Colors.white,
                           textColor: const Color.fromRGBO(220, 20, 60, 1),
-                          child: const Text("-", style: TextStyle(fontSize: 15)),
+                          child:
+                              const Text("-", style: TextStyle(fontSize: 15)),
                         ),
                       ),
                     ],
                   ),
-
                 ],
               )),
             ],
