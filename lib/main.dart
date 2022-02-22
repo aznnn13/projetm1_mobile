@@ -62,78 +62,79 @@ class _MyState extends State<regressionLineaire> {
 
   //////////////////////////////////////////////////////////////////////////////
   int nbPoints = 1;
-  List<TextEditingController> textFieldControllers = [];
-  List<Widget> _TextFieldList = [];
-  List<TextEditingController> listController = [];
+  List<Widget> RowList = [];
+  List<TextEditingController> listControllerX = [];
+  List<TextEditingController> listControllerY = [];
 
   void addNewPoint() {
     TextEditingController controllerX = TextEditingController();
     TextEditingController controllerY = TextEditingController();
-    listController.add(controllerX);
-    listController.add(controllerY);
-    _TextFieldList.add(
-        Column(
+    listControllerX.add(controllerX);
+    listControllerY.add(controllerY);
+    RowList.add(Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text("Point " + nbPoints.toString() + " :",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                    )),
-                SizedBox(
-                  width: 115,
-                  child: TextField(
-                    controller: controllerX,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp(r'^\d+\.?\d{0,5}')),
-                    ],
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'X',
-                    ),
-                  ),
+            Text("Point " + nbPoints.toString() + " :",
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                )),
+            SizedBox(
+              width: 115,
+              child: TextField(
+                controller: controllerX,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+                ],
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'X',
                 ),
-                SizedBox(
-                  width: 115,
-                  child: TextField(
-                     controller: controllerY,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp(r'^\d+\.?\d{0,5}')),
-                    ],
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Y',
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
             SizedBox(
-              height: 10,
+              width: 115,
+              child: TextField(
+                controller: controllerY,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+                ],
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Y',
+                ),
+              ),
             )
           ],
+        ),
+        SizedBox(
+          height: 10,
         )
-    );
+      ],
+    ));
     nbPoints++;
     setState(() {});
   }
 
-  void envoyer(){
-    int taille = listController.length;
-    for(int i = 0; i < taille; i++){
-      log(listController[i].text.toString());
+  void envoyer() {
+    int taille = listControllerX.length;
+    for (int i = 0; i < taille; i++) {
+      log("Point " + (i+1).toString() + ": X =" + listControllerX[i].text.toString()
+      + ", Y = " + listControllerY[i].text.toString());
     }
   }
 
-
   void removeNewPoint() {
-    _TextFieldList.removeLast();
-    nbPoints--;
+    if (RowList.isNotEmpty) {
+      int lastIndex = RowList.length;
+      listControllerX.removeAt(lastIndex-1);
+      listControllerY.removeAt(lastIndex-1);
+      RowList.removeLast();
+      nbPoints--;
+    }
     setState(() {});
   }
 
@@ -141,86 +142,76 @@ class _MyState extends State<regressionLineaire> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ListView(shrinkWrap: false, children: <Widget>[
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                  child: Column(
-                children: [
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _TextFieldList.length,
-                      itemBuilder: (context, index) {
-                        return _TextFieldList[index];
-                      }),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 100),
-                      SizedBox(
-                        height: 50.0,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: const BorderSide(
-                                  color: Color.fromRGBO(0, 160, 227, 1))),
-                          onPressed: () {
-                            addNewPoint();
-                          },
-                          padding: const EdgeInsets.all(15.0),
-                          color: Colors.white,
-                          textColor: const Color.fromRGBO(0, 160, 227, 1),
-                          child:
-                              const Text("+", style: TextStyle(fontSize: 15)),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      SizedBox(
-                        height: 50.0,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: const BorderSide(
-                                  color: Color.fromRGBO(0, 160, 227, 1))),
-                          onPressed: () {envoyer();},
-                          padding: const EdgeInsets.all(15.0),
-                          color: Colors.white,
-                          textColor: const Color.fromRGBO(0, 160, 227, 1),
-                          child: const Text("Envoyer",
-                              style: TextStyle(fontSize: 15)),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      SizedBox(
-                        height: 50.0,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: const BorderSide(
-                                  color: Color.fromRGBO(220, 20, 60, 1))),
-                          onPressed: () {
-                            removeNewPoint();
-                          },
-                          padding: const EdgeInsets.all(15.0),
-                          color: Colors.white,
-                          textColor: const Color.fromRGBO(220, 20, 60, 1),
-                          child:
-                              const Text("-", style: TextStyle(fontSize: 15)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              )),
-            ],
-          ),
-        ]),
-      ),
+    return Column(
+      children: [
+        const SizedBox(
+          height: 15,
+        ),
+        Expanded(
+          child: ListView.builder(
+              shrinkWrap: false,
+              itemCount: RowList.length,
+              itemBuilder: (context, index) {
+                return RowList[index];
+              }),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 100),
+            SizedBox(
+              height: 50.0,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: const BorderSide(
+                        color: Color.fromRGBO(0, 160, 227, 1))),
+                onPressed: () {
+                  addNewPoint();
+                },
+                padding: const EdgeInsets.all(15.0),
+                color: Colors.white,
+                textColor: const Color.fromRGBO(0, 160, 227, 1),
+                child: const Text("Ajouter", style: TextStyle(fontSize: 15)),
+              ),
+            ),
+            const SizedBox(width: 20),
+            SizedBox(
+              height: 50.0,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: const BorderSide(
+                        color: Color.fromRGBO(0, 160, 227, 1))),
+                onPressed: () {
+                  envoyer();
+                },
+                padding: const EdgeInsets.all(15.0),
+                color: Colors.white,
+                textColor: const Color.fromRGBO(0, 160, 227, 1),
+                child: const Text("Envoyer", style: TextStyle(fontSize: 15)),
+              ),
+            ),
+            const SizedBox(width: 20),
+            SizedBox(
+              height: 50.0,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: const BorderSide(
+                        color: Color.fromRGBO(220, 20, 60, 1))),
+                onPressed: () {
+                  removeNewPoint();
+                },
+                padding: const EdgeInsets.all(15.0),
+                color: Colors.white,
+                textColor: const Color.fromRGBO(220, 20, 60, 1),
+                child: const Text("Supprimer", style: TextStyle(fontSize: 15)),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
