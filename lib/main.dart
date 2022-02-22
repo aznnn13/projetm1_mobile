@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -48,7 +50,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-//////////////////////////// REGRESSION LINEAIRE ////////////////////////////
+/////////////////////////////// REGRESSION LINEAIRE ////////////////////////////
 
 class regressionLineaire extends StatefulWidget {
   @override
@@ -58,117 +60,180 @@ class regressionLineaire extends StatefulWidget {
 class _MyState extends State<regressionLineaire> {
   final int decimalRange = 5;
 
-  void changeColor() {
+  //////////////////////////////////////////////////////////////////////////////
+  int nbPoints = 2;
+  var listOfFields = <Widget>[
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text("Point 1 :",
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            )),
+        SizedBox(
+          width: 115,
+          child: TextField(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+            ],
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'X',
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 115,
+          child: TextField(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+            ],
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Y',
+            ),
+          ),
+        )
+      ],
+    )
+  ];
+
+  void addNewPoint() {
     setState(() {
-      //TODO: Ajouter Textfields
+      listOfFields.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text("Point " + nbPoints.toString() + " :",
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                )),
+            SizedBox(
+              width: 115,
+              child: TextField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+                ],
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'X',
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 115,
+              child: TextField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+                ],
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Y',
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+      nbPoints++;
     });
   }
+
+  void removeNewPoint() {
+    setState(() {
+      listOfFields.removeLast();
+      nbPoints--;
+    });
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: ListView(shrinkWrap: false, children: <Widget>[
-        Column(
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text("Point 1 : ",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                    )),
-                SizedBox(
-                  width: 115,
-                  child: TextField(
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp(r'^\d+\.?\d{0,5}')),
+        child: ListView(shrinkWrap: false, children: <Widget>[
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                  child: Column(
+                children: [
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: listOfFields.length,
+                      itemBuilder: (context, index) {
+                        return listOfFields[index];
+                      }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 100),
+                      SizedBox(
+                        height: 50.0,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: const BorderSide(
+                                  color: Color.fromRGBO(0, 160, 227, 1))),
+                          onPressed: () {
+                            addNewPoint();
+                          },
+                          padding: const EdgeInsets.all(15.0),
+                          color: Colors.white,
+                          textColor: const Color.fromRGBO(0, 160, 227, 1),
+                          child: const Text("+", style: TextStyle(fontSize: 15)),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      SizedBox(
+                        height: 50.0,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: const BorderSide(
+                                  color: Color.fromRGBO(0, 160, 227, 1))),
+                          onPressed: () {},
+                          padding: const EdgeInsets.all(15.0),
+                          color: Colors.white,
+                          textColor: const Color.fromRGBO(0, 160, 227, 1),
+                          child:
+                          const Text("Envoyer", style: TextStyle(fontSize: 15)),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      SizedBox(
+                        height: 50.0,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: const BorderSide(
+                                  color: Color.fromRGBO(220, 20, 60, 1))),
+                          onPressed: () {
+                            removeNewPoint();
+                          },
+                          padding: const EdgeInsets.all(15.0),
+                          color: Colors.white,
+                          textColor: const Color.fromRGBO(220, 20, 60, 1),
+                          child: const Text("-", style: TextStyle(fontSize: 15)),
+                        ),
+                      ),
                     ],
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'X',
-                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 115,
-                  child: TextField(
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp(r'^\d+\.?\d{0,5}')),
-                    ],
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Y',
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 100),
-                SizedBox(
-                  height: 50.0,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: const BorderSide(
-                            color: Color.fromRGBO(0, 160, 227, 1))),
-                    onPressed: () {},
-                    padding: const EdgeInsets.all(15.0),
-                    color: Colors.white,
-                    textColor: const Color.fromRGBO(0, 160, 227, 1),
-                    child: const Text("+",
-                        style: TextStyle(fontSize: 15)),
-                  ),
-                ),
-                const SizedBox(width: 20),
-                SizedBox(
-                  height: 50.0,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: const BorderSide(
-                            color: Color.fromRGBO(0, 160, 227, 1))),
-                    onPressed: () {},
-                    padding: const EdgeInsets.all(15.0),
-                    color: Colors.white,
-                    textColor: const Color.fromRGBO(0, 160, 227, 1),
-                    child: const Text("Envoyer",
-                        style: TextStyle(fontSize: 15)),
-                  ),
-                ),
-                const SizedBox(width: 20),
-                SizedBox(
-                  height: 50.0,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: const BorderSide(
-                            color: Color.fromRGBO(220, 20, 60, 1))),
-                    onPressed: () {},
-                    padding: const EdgeInsets.all(15.0),
-                    color: Colors.white,
-                    textColor: const Color.fromRGBO(220, 20, 60, 1),
-                    child: const Text("-",
-                        style: TextStyle(fontSize: 15)),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        )
-      ])),
+
+                ],
+              )),
+            ],
+          ),
+        ]),
+      ),
     );
   }
 }
