@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         body: const TabBarView(children: [
-          regressionLineaire(),
+          RegressionLineaire(),
           Text("Test"),
         ]),
       ),

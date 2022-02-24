@@ -1,21 +1,19 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
-
-class regressionLineaire extends StatefulWidget {
-  const regressionLineaire({Key? key}) : super(key: key);
+class RegressionLineaire extends StatefulWidget {
+  const RegressionLineaire({Key? key}) : super(key: key);
 
   @override
   State createState() => _MyState();
 }
 
-class _MyState extends State<regressionLineaire> {
+class _MyState extends State<RegressionLineaire> {
   final int decimalRange = 5;
-
-  //////////////////////////////////////////////////////////////////////////////
   int nbPoints = 1;
-  List<Widget> RowList = [];
+  List<Widget> rowList = [];
   List<TextEditingController> listControllerX = [];
   List<TextEditingController> listControllerY = [];
 
@@ -26,7 +24,7 @@ class _MyState extends State<regressionLineaire> {
     listControllerX.add(controllerX);
     listControllerY.add(controllerY);
 
-    RowList.add(Column(
+    rowList.add(Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -76,9 +74,8 @@ class _MyState extends State<regressionLineaire> {
     setState(() {});
   }
 
-  void envoyer() {
-    int taille = listControllerX.length;
-    for (int i = 0; i < taille; i++) {
+  Future<void> envoyer() async {
+    for (int i = 0; i < listControllerX.length; i++) {
       log("Point " +
           (i + 1).toString() +
           ": X =" +
@@ -86,14 +83,17 @@ class _MyState extends State<regressionLineaire> {
           ", Y = " +
           listControllerY[i].text.toString());
     }
+
+    log(await http.read(Uri.parse('http://127.0.0.1:5000/apiRegression')));
+
   }
 
   void removeNewPoint() {
-    if (RowList.isNotEmpty) {
-      int lastIndex = RowList.length;
+    if (rowList.isNotEmpty) {
+      int lastIndex = rowList.length;
       listControllerX.removeAt(lastIndex - 1);
       listControllerY.removeAt(lastIndex - 1);
-      RowList.removeLast();
+      rowList.removeLast();
       nbPoints--;
     }
     setState(() {});
@@ -109,9 +109,9 @@ class _MyState extends State<regressionLineaire> {
         Expanded(
           child: ListView.builder(
               shrinkWrap: false,
-              itemCount: RowList.length,
+              itemCount: rowList.length,
               itemBuilder: (context, index) {
-                return RowList[index];
+                return rowList[index];
               }),
         ),
         Row(
