@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -39,6 +41,7 @@ class _MyState extends State<RegressionLineaire> {
                 controller: controllerX,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+                  /*TODO: autoriser des valeurs négatives*/
                 ],
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
@@ -75,17 +78,35 @@ class _MyState extends State<RegressionLineaire> {
   }
 
   Future<void> envoyer() async {
-    for (int i = 0; i < listControllerX.length; i++) {
-      log("Point " +
-          (i + 1).toString() +
-          ": X =" +
-          listControllerX[i].text.toString() +
-          ", Y = " +
-          listControllerY[i].text.toString());
+    List<String> listX = [];
+    List<String> listY = [];
+
+    for (int i = 0; i < nbPoints-1; i++) {
+          listX.add(listControllerX[i].text.toString());
+          listY.add(listControllerY[i].text.toString());
     }
 
-    log(await http.read(Uri.parse('http://127.0.0.1:5000/apiRegression')));
+    final response = await http.post(
+      Uri.parse('http://127.0.0.1:5000/apiRegression'), // 10.0.2.2 = localhost pour android
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, List>{
+        "x": listX,
+        "y": listY,
+      }),
+    );
 
+    if (response.statusCode == 200) {
+      // If the server did return a 200 CREATED response,
+      // then parse the JSON.
+      //TODO: Afficher l'image
+      log("gg");
+    } else {
+      // If the server did not return a 200 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to get api response.');
+    }
   }
 
   void removeNewPoint() {
