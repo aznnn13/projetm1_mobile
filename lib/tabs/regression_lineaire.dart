@@ -40,7 +40,7 @@ class _MyState extends State<RegressionLineaire> {
               child: TextField(
                 controller: controllerX,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+                  FilteringTextInputFormatter.allow(RegExp(r'(^-?\d*\.?\d{0,5})')),
                   /*TODO: autoriser des valeurs négatives*/
                 ],
                 keyboardType:
@@ -56,7 +56,7 @@ class _MyState extends State<RegressionLineaire> {
               child: TextField(
                 controller: controllerY,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
+                  FilteringTextInputFormatter.allow(RegExp(r'(^-?\d*\.?\d{0,5})')),
                 ],
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
