@@ -11,7 +11,7 @@ class result extends StatelessWidget {
           title: const Text('Résultat'),
         ),
         body: PhotoView(
-            backgroundDecoration: BoxDecoration(color: Colors.white),
+            backgroundDecoration: const BoxDecoration(color: Colors.white),
             imageProvider: const NetworkImage(
                 "http://127.0.0.1:5000/static/images/linear_regression.png")));
   }
