@@ -31,7 +31,11 @@ dependencies:
     sdk: flutter
   font_awesome_flutter: ^9.2.0
   http: ^0.13.4
-  photo_view: ^0.13.0
+  photo_view:
+    git:
+      url: https://github.com/bluefireteam/photo_view
+      ref: master
+
 
 
   # The following adds the Cupertino Icons font to your application.

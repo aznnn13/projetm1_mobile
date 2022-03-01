@@ -85,8 +85,12 @@ class _MyState extends State<RegressionLineaire> {
     List<String> listX = [];
     List<String> listY = [];
     for (int i = 0; i < nbPoints - 1; i++) {
-      listX.add(listControllerX[i].text.toString());
-      listY.add(listControllerY[i].text.toString());
+      if (listControllerX[i].text.isEmpty || listControllerY[i].text.isEmpty) {
+        log("Valeur vide");
+      } else {
+        listX.add(listControllerX[i].text.toString());
+        listY.add(listControllerY[i].text.toString());
+      }
     }
 
     final response = await http.post(
@@ -105,7 +109,7 @@ class _MyState extends State<RegressionLineaire> {
       // Display page result
       log(response.body);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const result()));
+          context, MaterialPageRoute(builder: (context) => result()));
     } else {
       // If the server did not return a 200 CREATED response,
       // then throw an exception.
