@@ -18,7 +18,7 @@ class _MyState extends State<RegressionLineaire> {
   List<Widget> rowList = [];
   List<TextEditingController> listControllerX = [];
   List<TextEditingController> listControllerY = [];
-  double opacity = 0.5;
+  bool isTextVisible = true;
 
   void addNewPoint() {
     TextEditingController controllerX = TextEditingController();
@@ -78,14 +78,13 @@ class _MyState extends State<RegressionLineaire> {
     ));
     nbPoints++;
     setState(() {
-      opacity = 0;
+      isTextVisible = false;
     });
   }
 
   Future<void> envoyer() async {
     List<String> listX = [];
     List<String> listY = [];
-    opacity = 0;
     for (int i = 0; i < nbPoints - 1; i++) {
       listX.add(listControllerX[i].text.toString());
       listY.add(listControllerY[i].text.toString());
@@ -125,7 +124,7 @@ class _MyState extends State<RegressionLineaire> {
     }
     setState(() {
       if (rowList.isEmpty) {
-        opacity = 0.5;
+        isTextVisible = true;
       }
     });
   }
@@ -137,9 +136,13 @@ class _MyState extends State<RegressionLineaire> {
         const SizedBox(
           height: 30,
         ),
-        Text(
-          "Appuyer sur ' + ' pour ajouter un nouveau point",
-          style: TextStyle(color: Colors.black.withOpacity(opacity)),
+        Visibility(
+          child: Text("Appuyer sur + pour ajouter un nouveau point",
+              style: TextStyle(color: Colors.black.withOpacity(0.5))),
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
+          visible: isTextVisible,
         ),
         Expanded(
           child: ListView.builder(
