@@ -18,6 +18,7 @@ class _MyState extends State<RegressionLineaire> {
   List<Widget> rowList = [];
   List<TextEditingController> listControllerX = [];
   List<TextEditingController> listControllerY = [];
+  double opacity = 0.5;
 
   void addNewPoint() {
     TextEditingController controllerX = TextEditingController();
@@ -40,7 +41,8 @@ class _MyState extends State<RegressionLineaire> {
               child: TextField(
                 controller: controllerX,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'(^-?\d*\.?\d{0,5})')),
+                  FilteringTextInputFormatter.allow(
+                      RegExp(r'(^-?\d*\.?\d{0,5})')),
                   /*TODO: autoriser des valeurs négatives*/
                 ],
                 keyboardType:
@@ -56,7 +58,8 @@ class _MyState extends State<RegressionLineaire> {
               child: TextField(
                 controller: controllerY,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'(^-?\d*\.?\d{0,5})')),
+                  FilteringTextInputFormatter.allow(
+                      RegExp(r'(^-?\d*\.?\d{0,5})')),
                 ],
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
@@ -74,20 +77,23 @@ class _MyState extends State<RegressionLineaire> {
       ],
     ));
     nbPoints++;
-    setState(() {});
+    setState(() {
+      opacity = 0;
+    });
   }
 
   Future<void> envoyer() async {
     List<String> listX = [];
     List<String> listY = [];
-
-    for (int i = 0; i < nbPoints-1; i++) {
-          listX.add(listControllerX[i].text.toString());
-          listY.add(listControllerY[i].text.toString());
+    opacity = 0;
+    for (int i = 0; i < nbPoints - 1; i++) {
+      listX.add(listControllerX[i].text.toString());
+      listY.add(listControllerY[i].text.toString());
     }
 
     final response = await http.post(
-      Uri.parse('http://127.0.0.1:5000/apiRegression'), // 10.0.2.2 = localhost pour android
+      Uri.parse('http://127.0.0.1:5000/apiRegression'),
+      // 10.0.2.2 = localhost pour android
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -117,7 +123,11 @@ class _MyState extends State<RegressionLineaire> {
       rowList.removeLast();
       nbPoints--;
     }
-    setState(() {});
+    setState(() {
+      if (rowList.isEmpty) {
+        opacity = 0.5;
+      }
+    });
   }
 
   @override
@@ -125,7 +135,11 @@ class _MyState extends State<RegressionLineaire> {
     return Column(
       children: [
         const SizedBox(
-          height: 15,
+          height: 30,
+        ),
+        Text(
+          "Appuyer sur ' + ' pour ajouter un nouveau point",
+          style: TextStyle(color: Colors.black.withOpacity(opacity)),
         ),
         Expanded(
           child: ListView.builder(
@@ -159,7 +173,7 @@ class _MyState extends State<RegressionLineaire> {
                   },
                   child: const Text("+", style: TextStyle(fontSize: 15)),
                 )),
-            const SizedBox(width: 20),
+            const SizedBox(width: 40),
             SizedBox(
                 height: 50.0,
                 child: ElevatedButton(
@@ -180,7 +194,7 @@ class _MyState extends State<RegressionLineaire> {
                   },
                   child: const Text("Envoyer", style: TextStyle(fontSize: 15)),
                 )),
-            const SizedBox(width: 20),
+            const SizedBox(width: 40),
             SizedBox(
                 height: 50.0,
                 child: ElevatedButton(
