@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:projetm1_mobile/result/result.dart';
 
 class RegressionLineaire extends StatefulWidget {
   const RegressionLineaire({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _MyState extends State<RegressionLineaire> {
   List<TextEditingController> listControllerX = [];
   List<TextEditingController> listControllerY = [];
   bool isTextVisible = true;
+  String image = "";
 
   void addNewPoint() {
     TextEditingController controllerX = TextEditingController();
@@ -105,13 +107,19 @@ class _MyState extends State<RegressionLineaire> {
     if (response.statusCode == 200) {
       // If the server did return a 200 CREATED response,
       // then parse the JSON.
-      //TODO: Afficher l'image
-      log("gg");
+      log("Server response = 200");
     } else {
       // If the server did not return a 200 CREATED response,
       // then throw an exception.
       throw Exception('Failed to get api response.');
     }
+
+    // Display page result
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const result()));
+    setState(() {
+      image = "http://127.0.0.1:5000/static/images/linear_regression.png";
+    });
   }
 
   void removeNewPoint() {
