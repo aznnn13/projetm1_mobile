@@ -104,22 +104,16 @@ class _MyState extends State<RegressionLineaire> {
       }),
     );
 
-    if (response.statusCode == 200) {
-      // If the server did return a 200 CREATED response,
-      // then parse the JSON.
-      log("Server response = 200");
+    if (response.body == "Ok") {
+      // Display page result
+      log(response.body);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const result()));
     } else {
       // If the server did not return a 200 CREATED response,
       // then throw an exception.
       throw Exception('Failed to get api response.');
     }
-
-    // Display page result
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const result()));
-    setState(() {
-      image = "http://127.0.0.1:5000/static/images/linear_regression.png";
-    });
   }
 
   void removeNewPoint() {
@@ -146,7 +140,8 @@ class _MyState extends State<RegressionLineaire> {
         ),
         Visibility(
           child: Text("Appuyer sur + pour ajouter un nouveau point",
-              style: TextStyle(color: Colors.black.withOpacity(0.5))),
+              style: TextStyle(
+                  color: Colors.black.withOpacity(0.5), fontSize: 15)),
           maintainSize: true,
           maintainAnimation: true,
           maintainState: true,
