@@ -14,13 +14,11 @@ class RegressionLineaire extends StatefulWidget {
 }
 
 class _MyState extends State<RegressionLineaire> {
-  final int decimalRange = 5;
   int nbPoints = 1;
   List<Widget> rowList = [];
   List<TextEditingController> listControllerX = [];
   List<TextEditingController> listControllerY = [];
   bool isTextVisible = true;
-  String image = "";
 
   void addNewPoint() {
     TextEditingController controllerX = TextEditingController();
@@ -45,7 +43,6 @@ class _MyState extends State<RegressionLineaire> {
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(
                       RegExp(r'(^-?\d*\.?\d{0,5})')),
-                  /*TODO: autoriser des valeurs négatives*/
                 ],
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
