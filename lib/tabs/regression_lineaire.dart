@@ -231,10 +231,9 @@ class _MyState extends State<RegressionLineaire> {
       );
 
       if (response.body == "Ok") {
-        // Display page result
         log(response.body);
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const result()));
+            context, MaterialPageRoute(builder: (context) => result()));
       } else {
         // If the server did not return a 200 CREATED response,
         // then throw an exception.

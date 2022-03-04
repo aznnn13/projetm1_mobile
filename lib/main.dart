@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
         debugShowCheckedModeBanner: false, title: "ProjetM1", home: HomePage());
   }
 }
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
               Tab(icon: Icon(Icons.scatter_plot), text: "Régression Linéaire"),
               Tab(
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        body: const TabBarView(children: [
+        body: TabBarView(children: [
           RegressionLineaire(),
           formulaire()
         ]),
