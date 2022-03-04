@@ -209,6 +209,7 @@ class _MyState extends State<RegressionLineaire> {
         log("Valeur vide");
         showAlertDialog(context);
         isEmpty = true;
+        break;
       } else {
         listX.add(listControllerX[i].text.toString());
         listY.add(listControllerY[i].text.toString());
@@ -254,7 +255,7 @@ class _MyState extends State<RegressionLineaire> {
     // set up the AlertDialog
     CupertinoAlertDialog alert = CupertinoAlertDialog(
       title: const Text("Erreur"),
-      content: const Text("Veuillez remplir tout les champs"),
+      content: const Text("Veuillez remplir tous les champs"),
       actions: <Widget>[
         CupertinoDialogAction(
           isDefaultAction: true,

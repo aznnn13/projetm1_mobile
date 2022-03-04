@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:projetm1_mobile/tabs/formulaire.dart';
 
 import 'tabs/regression_lineaire.dart';
 
@@ -44,9 +46,10 @@ class HomePage extends StatelessWidget {
         ),
         body: const TabBarView(children: [
           RegressionLineaire(),
-          Text("Test"),
+          formulaire()
         ]),
       ),
     );
   }
 }
+
