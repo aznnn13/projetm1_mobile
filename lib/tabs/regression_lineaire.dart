@@ -231,8 +231,11 @@ class _MyState extends State<RegressionLineaire> {
       );
 
       if (response.body == "Ok") {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const ResultRegression()));
+        // Reset image cache
+        imageCache?.clear();
+
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ResultRegression()));
       } else {
         // If the server did not return a 200 CREATED response,
         // then throw an exception.

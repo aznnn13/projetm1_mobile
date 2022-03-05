@@ -1,20 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
-class ResultRegression extends StatefulWidget {
+class ResultRegression extends StatelessWidget {
   const ResultRegression({Key? key}) : super(key: key);
 
-  @override
-  State createState() => _MyState();
-}
-
-class _MyState extends State<ResultRegression> {
-  @override
-  void initState() {
-    super.initState();
-    //Reset the image cache
-    imageCache?.clear();
-  }
 
   @override
   Widget build(BuildContext context) {
