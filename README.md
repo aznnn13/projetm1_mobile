@@ -1,16 +1,13 @@
-# projetm1_mobile
+# Projet de Master 1 MIAGE
 
-A new Flutter project.
 
-## Getting Started
+## Authors and acknowledgment
+Gauthey Robin
+Grellois Charles
 
-This project is a starting point for a Flutter application.
+## Description
 
-A few resources to get you started if this is your first Flutter project:
+Création d'une application mobile avec Flutter permettant l'utilisation d'un modèle de Deep Learning
+via un [backend](https://github.com/aznnn13/Projet-M1) en python
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
-class result extends StatefulWidget {
-  const result({Key? key}) : super(key: key);
+class ResultRegression extends StatefulWidget {
+  const ResultRegression({Key? key}) : super(key: key);
 
   @override
   State createState() => _MyState();
 }
 
-class _MyState extends State<result> {
+class _MyState extends State<ResultRegression> {
   @override
   void initState() {
     super.initState();

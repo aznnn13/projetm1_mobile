@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:projetm1_mobile/result/formulaire_result.dart';
 
-class formulaire extends StatefulWidget {
-  const formulaire({
+class Formulaire extends StatefulWidget {
+  const Formulaire({
     Key? key,
   }) : super(key: key);
 
@@ -13,7 +16,7 @@ class formulaire extends StatefulWidget {
   State createState() => _MyState();
 }
 
-class _MyState extends State<formulaire> {
+class _MyState extends State<Formulaire> {
   List<TextEditingController> listControllerFormulaire = [];
   TextEditingController controllerValue1 = TextEditingController();
   TextEditingController controllerValue2 = TextEditingController();
@@ -32,8 +35,10 @@ class _MyState extends State<formulaire> {
     listControllerFormulaire.add(controllerValue5);
   }
 
-  void sendFormulaire() {
+  Future<void> sendFormulaire() async {
     bool isEmpty = false;
+
+    // empty value check
     for (int i = 0; i < listControllerFormulaire.length; i++) {
       if (listControllerFormulaire[i].text.isEmpty) {
         log("Valeur vide");
@@ -44,7 +49,35 @@ class _MyState extends State<formulaire> {
     }
 
     if (isEmpty == false) {
-      log("ok");
+      //
+      List<String> listParameters = [];
+      for (int i = 0; i < listControllerFormulaire.length; i++) {
+        listParameters.add(listControllerFormulaire[i].text.toString());
+      }
+
+      final response = await http.post(
+        Uri.parse('http://127.0.0.1:5000/apiFormulaire'),
+        // android : 10.0.2.2:port
+        // ios & web : 127.0.0.1:5000
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          "saveData": isChecked.toString(),
+          "parameters": listParameters,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ResultFormulaire(
+                      result: response.body.toString(),
+                    )));
+      } else {
+        throw Exception('Failed to get api response.');
+      }
     }
   }
 
@@ -209,7 +242,6 @@ class _MyState extends State<formulaire> {
               onChanged: (bool? value) {
                 setState(() {
                   isChecked = value!;
-                  log(isChecked.toString());
                 });
               },
             ),

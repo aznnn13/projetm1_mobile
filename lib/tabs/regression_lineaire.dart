@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:projetm1_mobile/result/result.dart';
+import 'package:projetm1_mobile/result/regression_result.dart';
 
 class RegressionLineaire extends StatefulWidget {
   const RegressionLineaire({Key? key}) : super(key: key);
@@ -231,9 +231,8 @@ class _MyState extends State<RegressionLineaire> {
       );
 
       if (response.body == "Ok") {
-        log(response.body);
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => result()));
+            context, MaterialPageRoute(builder: (context) => const ResultRegression()));
       } else {
         // If the server did not return a 200 CREATED response,
         // then throw an exception.

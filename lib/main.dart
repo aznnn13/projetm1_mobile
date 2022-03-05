@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(children: [
           RegressionLineaire(),
-          formulaire()
+          Formulaire()
         ]),
       ),
     );
