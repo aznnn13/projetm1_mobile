@@ -20,6 +20,7 @@ class _MyState extends State<formulaire> {
   TextEditingController controllerValue3 = TextEditingController();
   TextEditingController controllerValue4 = TextEditingController();
   TextEditingController controllerValue5 = TextEditingController();
+  bool isChecked = false;
 
   @override
   void initState() {
@@ -57,7 +58,7 @@ class _MyState extends State<formulaire> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Valeur 1 : ",
+            const Text("Paramètre 1 : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
@@ -86,7 +87,7 @@ class _MyState extends State<formulaire> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Valeur 2 : ",
+            const Text("Paramètre 2 : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
@@ -115,7 +116,7 @@ class _MyState extends State<formulaire> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Valeur 3 : ",
+            const Text("Paramètre 3 : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
@@ -144,7 +145,7 @@ class _MyState extends State<formulaire> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Valeur 4 : ",
+            const Text("Paramètre 4 : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
@@ -173,7 +174,7 @@ class _MyState extends State<formulaire> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Valeur 5 : ",
+            const Text("Paramètre 5 : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
@@ -199,6 +200,24 @@ class _MyState extends State<formulaire> {
         const SizedBox(
           height: 60,
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Checkbox(
+              checkColor: Colors.white,
+              value: isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked = value!;
+                  log(isChecked.toString());
+                });
+              },
+            ),
+            const SizedBox(width: 5),
+            const Text("Sauvegarder mes données"),
+          ],
+        ),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
