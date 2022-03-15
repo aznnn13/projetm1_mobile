@@ -18,7 +18,7 @@ class ResultFormulaire extends StatelessWidget {
               children: [
                 const SizedBox(height: 250),
                 Text(
-                  "Valeur max : " + result,
+                  "Recidive : " + result,
                   style: const TextStyle(
                       fontWeight: FontWeight.w700, fontSize: 20),
                 )
