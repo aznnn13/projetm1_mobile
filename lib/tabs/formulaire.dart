@@ -89,13 +89,12 @@ class _MyState extends State<Formulaire> {
           height: 30,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text("Paramètre 1 : ",
+            const Text("Breslow : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
-            const SizedBox(width: 50),
             SizedBox(
               width: 115,
               child: TextField(
@@ -118,13 +117,12 @@ class _MyState extends State<Formulaire> {
           height: 30,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text("Paramètre 2 : ",
+            const Text("Ulceration : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
-            const SizedBox(width: 50),
             SizedBox(
               width: 115,
               child: TextField(
@@ -147,13 +145,12 @@ class _MyState extends State<Formulaire> {
           height: 30,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text("Paramètre 3 : ",
+            const Text("Mitoses : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
-            const SizedBox(width: 50),
             SizedBox(
               width: 115,
               child: TextField(
@@ -176,13 +173,12 @@ class _MyState extends State<Formulaire> {
           height: 30,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text("Paramètre 4 : ",
+            const Text("AJCC_corr : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
-            const SizedBox(width: 50),
             SizedBox(
               width: 115,
               child: TextField(
@@ -205,13 +201,12 @@ class _MyState extends State<Formulaire> {
           height: 30,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text("Paramètre 5 : ",
+            const Text("VCD_retenue : ",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
-            const SizedBox(width: 50),
             SizedBox(
               width: 115,
               child: TextField(
