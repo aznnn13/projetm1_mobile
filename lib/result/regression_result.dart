@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:projetm1_mobile/const.dart';
 
 class ResultRegression extends StatelessWidget {
   const ResultRegression({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class ResultRegression extends StatelessWidget {
         ),
         body: PhotoView(
             backgroundDecoration: const BoxDecoration(color: Colors.white),
-            imageProvider: const NetworkImage(
-                "http://127.0.0.1:5000/static/images/linear_regression.png")));
+            imageProvider: NetworkImage(
+                androidDevIp + "static/images/linear_regression.png")));
   }
 }

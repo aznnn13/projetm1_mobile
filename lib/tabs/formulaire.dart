@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:projetm1_mobile/const.dart';
 import 'package:projetm1_mobile/result/formulaire_result.dart';
 
 class Formulaire extends StatefulWidget {
@@ -56,7 +57,7 @@ class _MyState extends State<Formulaire> {
       }
 
       final response = await http.post(
-        Uri.parse('http://127.0.0.1:5000/apiFormulaire'),
+        Uri.parse(androidDevIp + 'apiFormulaire'),
         // android : 10.0.2.2:port
         // ios & web : 127.0.0.1:5000
         headers: <String, String>{
