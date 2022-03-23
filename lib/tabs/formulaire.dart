@@ -83,194 +83,196 @@ class _MyState extends State<Formulaire> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Text("Breslow : ",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                )),
-            SizedBox(
-              width: 115,
-              child: TextField(
-                controller: controllerValue1,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(
-                      RegExp(r'(^-?\d*\.?\d{0,5})')),
-                ],
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Valeur',
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text("Breslow : ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                  )),
+              SizedBox(
+                width: 115,
+                child: TextField(
+                  controller: controllerValue1,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'(^-?\d*\.?\d{0,5})')),
+                  ],
+                  keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Valeur',
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Text("Ulceration : ",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                )),
-            SizedBox(
-              width: 115,
-              child: TextField(
-                controller: controllerValue2,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(
-                      RegExp(r'(^-?\d*\.?\d{0,5})')),
-                ],
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Valeur',
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text("Ulceration : ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                  )),
+              SizedBox(
+                width: 115,
+                child: TextField(
+                  controller: controllerValue2,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'(^-?\d*\.?\d{0,5})')),
+                  ],
+                  keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Valeur',
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Text("Mitoses : ",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                )),
-            SizedBox(
-              width: 115,
-              child: TextField(
-                controller: controllerValue3,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(
-                      RegExp(r'(^-?\d*\.?\d{0,5})')),
-                ],
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Valeur',
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text("Mitoses : ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                  )),
+              SizedBox(
+                width: 115,
+                child: TextField(
+                  controller: controllerValue3,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'(^-?\d*\.?\d{0,5})')),
+                  ],
+                  keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Valeur',
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Text("AJCC_corr : ",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                )),
-            SizedBox(
-              width: 115,
-              child: TextField(
-                controller: controllerValue4,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(
-                      RegExp(r'(^-?\d*\.?\d{0,5})')),
-                ],
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Valeur',
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text("AJCC_corr : ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                  )),
+              SizedBox(
+                width: 115,
+                child: TextField(
+                  controller: controllerValue4,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'(^-?\d*\.?\d{0,5})')),
+                  ],
+                  keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Valeur',
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Text("VCD_retenue : ",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                )),
-            SizedBox(
-              width: 115,
-              child: TextField(
-                controller: controllerValue5,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(
-                      RegExp(r'(^-?\d*\.?\d{0,5})')),
-                ],
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Valeur',
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text("VCD_retenue : ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                  )),
+              SizedBox(
+                width: 115,
+                child: TextField(
+                  controller: controllerValue5,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'(^-?\d*\.?\d{0,5})')),
+                  ],
+                  keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Valeur',
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 60,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Checkbox(
-              checkColor: Colors.white,
-              value: isChecked,
-              onChanged: (bool? value) {
-                setState(() {
-                  isChecked = value!;
-                });
-              },
-            ),
-            const SizedBox(width: 5),
-            const Text("Sauvegarder mes données"),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-                height: 50.0,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromRGBO(0, 160, 227, 1),
-                      ),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: const BorderSide(
-                                color: Color.fromRGBO(0, 160, 227, 1))),
-                      )),
-                  onPressed: () {
-                    sendFormulaire();
-                  },
-                  child: const Text("Envoyer", style: TextStyle(fontSize: 15)),
-                )),
-          ],
-        )
-      ],
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Checkbox(
+                checkColor: Colors.white,
+                value: isChecked,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isChecked = value!;
+                  });
+                },
+              ),
+              const SizedBox(width: 5),
+              const Text("Sauvegarder mes données"),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                  height: 50.0,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromRGBO(0, 160, 227, 1),
+                        ),
+                        backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: const BorderSide(
+                                  color: Color.fromRGBO(0, 160, 227, 1))),
+                        )),
+                    onPressed: () {
+                      sendFormulaire();
+                    },
+                    child: const Text("Envoyer", style: TextStyle(fontSize: 15)),
+                  )),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
